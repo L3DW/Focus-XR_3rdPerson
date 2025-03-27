@@ -1,0 +1,13 @@
+Marker Name	Description	In	Out	Duration	Marker Type	
+intro		00:00:00:00	00:01:31:00	00:01:31:00	Segmentation	
+C1		00:01:32:00	00:02:03:00	00:00:31:00	Segmentation	
+C2		00:02:04:00	00:02:20:00	00:00:16:00	Segmentation	
+C3		00:02:21:00	00:02:26:00	00:00:05:00	Segmentation	
+C4		00:02:27:00	00:02:47:00	00:00:20:00	Segmentation	
+C5		00:02:49:00	00:02:59:00	00:00:10:00	Segmentation	
+C7		00:03:00:00	00:03:13:00	00:00:13:00	Segmentation	
+C8		00:03:14:00	00:03:22:00	00:00:08:00	Segmentation	
+C9		00:03:23:00	00:03:28:00	00:00:05:00	Segmentation	
+C10		00:03:29:00	00:03:33:00	00:00:04:00	Segmentation	
+C11		00:03:34:00	00:03:41:00	00:00:07:00	Segmentation	
+outro		00:03:42:00	00:04:17:23	00:00:35:23	Segmentation	

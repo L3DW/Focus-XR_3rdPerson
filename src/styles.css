@@ -1,0 +1,63 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root,
+#root > main {
+  height: 100dvh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  display: grid;
+  place-items: center;
+  > div {
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;
+  }
+}
+
+#HUD {
+  align-self: end;
+  padding: 0.5rem;
+  z-index: 5;
+
+  button {
+    pointer-events: all;
+    margin: 0 0.5rem;
+    padding: 12px 26px 18px;
+    border: 0;
+    font-size: 16px;
+    transition: all 100ms ease-in-out;
+    border-radius: 20px;
+    color: #071432;
+    font-weight: bold;
+    background: #fff;
+    box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0,
+      inset 0px -6px 0px rgba(0, 0, 0, 0.1),
+      inset 0px -2px 0px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    z-index: 5;
+
+    &:hover {
+      filter: brightness(0.98);
+      transform: translateY(1px);
+      box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0,
+        inset 0px -5px 0px rgba(0, 0, 0, 0.1),
+        inset 0px -2px 0px rgba(0, 0, 0, 0.15);
+    }
+
+    &:active {
+      filter: brightness(0.97);
+      transform: translateY(3px);
+      padding-top: 15px;
+      padding-bottom: 15px;
+      box-shadow: rgba(99, 99, 99, 0.2) 0 2px 6px 0,
+        inset 0px -1px 0px rgba(0, 0, 0, 0.15);
+    }
+  }
+}
