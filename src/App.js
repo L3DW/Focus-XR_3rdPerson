@@ -2,36 +2,41 @@ import { useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import { CameraControls, Grid } from "@react-three/drei";
 import { Perf } from "r3f-perf";
-import { XR, createXRStore } from '@react-three/xr'
-
-// import HUD from "./HUD";
+import { XR, createXRStore } from "@react-three/xr";
 import { VideoScreen } from "./VideoScreen/VideoScreen";
-const store = createXRStore()
+
+const store = createXRStore();
+
 export default function App() {
   const screenRef = useRef();
+
+  // Helper function to log video info
+  const logVideoInfo = () => {
+    if (screenRef.current) {
+      console.log("Current Time:", screenRef.current.getCurrentTime());
+      console.log("Duration:", screenRef.current.getDuration());
+      console.log("Is Playing:", screenRef.current.isPlaying());
+    }
+  };
+
   return (
     <main>
+      {/* HUD Controls */}
       <div id="HUD">
-        <button onClick={() => screenRef.current.play()}>Play</button>
-
-        <button onClick={() => screenRef.current.pause()}>Pause</button>
-
-        <button onClick={() => screenRef.current.randomClip()}>Random Clip</button>
-
-        <button
-          onClick={() => {
-            console.log("Current Time:", screenRef.current.getCurrentTime());
-            console.log("Duration:", screenRef.current.getDuration());
-            console.log("Is Playing:", screenRef.current.isPlaying());
-          }}
-        >
-          Console Video Info
-        </button>
-
-        <button className="red" onClick={() => store.enterAR()}>Enter XR</button>
-
+        {[
+          { label: "Play", onClick: () => screenRef.current?.play() },
+          { label: "Pause", onClick: () => screenRef.current?.pause() },
+          { label: "Random Clip", onClick: () => screenRef.current?.randomClip() },
+          { label: "Console Video Info", onClick: logVideoInfo },
+          { label: "Enter XR", onClick: () => store.enterAR(), className: "red" },
+        ].map(({ label, onClick, className }, index) => (
+          <button key={index} onClick={onClick} className={className}>
+            {label}
+          </button>
+        ))}
       </div>
 
+      {/* 3D Canvas */}
       <Canvas camera={{ position: [0, 2, 5], fov: 50, near: 0.1, far: 100 }}>
         <XR store={store}>
           <Perf />

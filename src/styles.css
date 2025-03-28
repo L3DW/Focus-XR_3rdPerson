@@ -1,3 +1,4 @@
+/* General Reset */
 * {
   box-sizing: border-box;
 }
@@ -5,7 +6,7 @@
 html,
 body,
 #root,
-#root>main {
+#root > main {
   height: 100dvh;
   width: 100vw;
   margin: 0;
@@ -16,83 +17,83 @@ main {
   display: grid;
   place-items: center;
 
-  >div {
+  > div {
     grid-column: 1 / -1;
     grid-row: 1 / -1;
   }
 }
 
+/* HUD Styling */
 #HUD {
+  display: flex; /* Use Flexbox for alignment */
+  flex-direction: row; /* Stack children vertically */
+  justify-content: flex-end; /* Align children to the bottom */
   align-self: start;
   padding: 1rem;
+  height: 5rem;
   z-index: 5;
   background-color: rgb(243, 243, 243);
-  border-radius: 0 0 1rem 1rem;
-  /* Rounded corners on top */
+  border-radius: 0 0 1rem 1rem; /* Rounded corners on top */
   box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0,
     inset 0px -6px 0px rgba(0, 0, 0, 0.1),
     inset 0px -2px 0px rgba(0, 0, 0, 0.15);
+}
 
-  button {
-    pointer-events: all;
-    margin: 0 0.5rem;
-    padding: 12px 26px 18px;
-    border: 0;
-    font-size: 16px;
-    transition: all 100ms ease-in-out;
-    border-radius: 20px;
-    color: #071432;
-    font-weight: bold;
-    background: #fff;
-    box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0,
-      inset 0px -6px 0px rgba(0, 0, 0, 0.1),
-      inset 0px -2px 0px rgba(0, 0, 0, 0.15);
-    cursor: pointer;
-    z-index: 5;
-    margin-top: 3px;
+/* Button Base Styles */
+#HUD button {
+  pointer-events: all;
+  margin: 0 0.5rem;
+  padding: 12px 26px 18px;
+  border: 0;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 20px;
+  color: #071432;
+  background: #fff;
+  cursor: pointer;
+  z-index: 5;
+  transition: all 100ms ease-in-out;
+  box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0,
+    inset 0px -6px 0px rgba(0, 0, 0, 0.1),
+    inset 0px -2px 0px rgba(0, 0, 0, 0.15);
+}
 
-    &:hover {
-      filter: brightness(0.98);
-      transform: translateY(1px);
-      margin-top: 2px;
-      box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0,
-        inset 0px -5px 0px rgba(0, 0, 0, 0.1),
-        inset 0px -2px 0px rgba(0, 0, 0, 0.15);
-    }
+#HUD button:hover {
+  filter: brightness(0.98);
+  transform: translateY(1px);
+  margin-top: 2px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0,
+    inset 0px -5px 0px rgba(0, 0, 0, 0.1),
+    inset 0px -2px 0px rgba(0, 0, 0, 0.15);
+}
 
-    &:active {
-      filter: brightness(0.97);
-      margin-top: 0px;
-      transform: translateY(3px);
-      padding-top: 15px;
-      padding-bottom: 15px;
-      box-shadow: rgba(99, 99, 99, 0.2) 0 2px 6px 0,
-        inset 0px -1px 0px rgba(0, 0, 0, 0.15);
-    }
-  }
-  button.red {
-    background: #ff4d4d; /* Red background */
-    color: #fff; /* White text */
-    box-shadow: rgba(255, 77, 77, 0.4) 0 2px 8px 0,
-      inset 0px -6px 0px rgba(0, 0, 0, 0.1),
-      inset 0px -2px 0px rgba(0, 0, 0, 0.15);
-    transition: all 100ms ease-in-out;
-  }
-  
-  button.red:hover {
-    filter: brightness(0.95);
-    transform: translateY(1px);
-    box-shadow: rgba(255, 77, 77, 0.4) 0 2px 8px 0,
-      inset 0px -5px 0px rgba(0, 0, 0, 0.1),
-      inset 0px -2px 0px rgba(0, 0, 0, 0.15);
-  }
-  
-  button.red:active {
-    filter: brightness(0.9);
-    transform: translateY(3px);
-    padding-top: 15px;
-    padding-bottom: 15px;
-    box-shadow: rgba(255, 77, 77, 0.4) 0 2px 6px 0,
-      inset 0px -1px 0px rgba(0, 0, 0, 0.15);
-  }
+#HUD button:active {
+  filter: brightness(0.97);
+  transform: translateY(3px);
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-top: 0;
+  box-shadow: rgba(99, 99, 99, 0.2) 0 2px 6px 0,
+    inset 0px -1px 0px rgba(0, 0, 0, 0.15);
+}
+
+/* Red Button Variant */
+#HUD button.red {
+  background: #ff4d4d;
+  color: #fff;
+  box-shadow: rgba(255, 77, 77, 0.4) 0 2px 8px 0,
+    inset 0px -6px 0px rgba(0, 0, 0, 0.1),
+    inset 0px -2px 0px rgba(0, 0, 0, 0.15);
+}
+
+#HUD button.red:hover {
+  filter: brightness(0.95);
+  transform: translateY(1px);
+}
+
+#HUD button.red:active {
+  filter: brightness(0.9);
+  transform: translateY(3px);
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
