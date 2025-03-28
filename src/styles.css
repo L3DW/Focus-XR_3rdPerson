@@ -5,7 +5,7 @@
 html,
 body,
 #root,
-#root > main {
+#root>main {
   height: 100dvh;
   width: 100vw;
   margin: 0;
@@ -15,16 +15,23 @@ body,
 main {
   display: grid;
   place-items: center;
-  > div {
+
+  >div {
     grid-column: 1 / -1;
     grid-row: 1 / -1;
   }
 }
 
 #HUD {
-  align-self: end;
-  padding: 0.5rem;
+  align-self: start;
+  padding: 1rem;
   z-index: 5;
+  background-color: rgb(243, 243, 243);
+  border-radius: 0 0 1rem 1rem;
+  /* Rounded corners on top */
+  box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0,
+    inset 0px -6px 0px rgba(0, 0, 0, 0.1),
+    inset 0px -2px 0px rgba(0, 0, 0, 0.15);
 
   button {
     pointer-events: all;
@@ -42,10 +49,12 @@ main {
       inset 0px -2px 0px rgba(0, 0, 0, 0.15);
     cursor: pointer;
     z-index: 5;
+    margin-top: 3px;
 
     &:hover {
       filter: brightness(0.98);
       transform: translateY(1px);
+      margin-top: 2px;
       box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0,
         inset 0px -5px 0px rgba(0, 0, 0, 0.1),
         inset 0px -2px 0px rgba(0, 0, 0, 0.15);
@@ -53,6 +62,7 @@ main {
 
     &:active {
       filter: brightness(0.97);
+      margin-top: 0px;
       transform: translateY(3px);
       padding-top: 15px;
       padding-bottom: 15px;
