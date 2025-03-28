@@ -31,7 +31,7 @@ export default function App() {
         <Perf />
         <ambientLight intensity={1} />
         <CameraControls />
-        <Grid args={[10, 10]} position-y={-2.5} />
+        <Grid args={[10, 10]} position-y={-3.5} />
         <VideoScreen scale={0.25} ref={screenRef} />
       </Canvas>
     </main>
