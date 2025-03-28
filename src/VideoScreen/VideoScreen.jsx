@@ -12,14 +12,14 @@ import { useSubtitles } from "./useSubtitles";
 import { useVideoTextureControls } from "./useVideoTextureControls";
 
 // Memoize the control buttons to prevent unnecessary re-renders
-const ControlButton = memo(({ position, onClick, children }) => (
+const ControlButton = memo(({ onClick, children, ...props }) => (
   <Box
     args={[0.75, 0.2, 0.1]}
-    position-x={position}
     onClick={(e) => {
       e.stopPropagation();
       onClick();
     }}
+    {...props}
   >
     <Text color="black" fontSize={0.1} position={[0, 0, 0.055]}>
       {children}
@@ -124,24 +124,56 @@ export const VideoScreen = memo(
         [controls, getRandomClip]
       );
 
-      const Controls = useMemo(
-        () => (
+      const Controls = useMemo(() => {
+        if (!clips) return null;
+
+        const clipKeys = Object.keys(clips);
+        const columns = 4; // Number of buttons per row
+        const buttonSpacing = 1; // Spacing between buttons
+
+        // Generate a button for each clip
+        const clipButtons = clipKeys.map((clipName, index) => {
+          const clipData = clips[clipName];
+
+          // Calculate grid positions
+          const row = Math.floor(index / columns); // Determine the row
+          const col = index % columns; // Determine the column
+
+          const x = col * buttonSpacing - (columns - 1) * buttonSpacing / 2; // Center the grid horizontally
+          const y = -row * buttonSpacing / 2.5; // Arrange rows vertically
+
+          return (
+            <ControlButton
+              key={clipName}
+              position={[x, y, 0]} // Set position in 3D space
+              onClick={() => controls.playSequence({ start: clipData.start, end: clipData.end })}
+            >
+              {clipName}
+            </ControlButton>
+          );
+        });
+
+        return (
           <group position={[0, -2, 0]}>
-            <ControlButton position={1} onClick={handlePause}>
+
+            {/* Existing buttons */}
+            <ControlButton position={[-1, 0, 0]} onClick={handlePlay}>
+              Play
+            </ControlButton>
+            <ControlButton position={[0, 0, 0]} onClick={handlePause}>
               Pause
             </ControlButton>
-
-            <ControlButton position={0} onClick={handleRandomClip}>
+            <ControlButton position={[1, 0, 0]} onClick={handleRandomClip}>
               Random Clip
             </ControlButton>
 
-            <ControlButton position={-1} onClick={handlePlay}>
-              Play
-            </ControlButton>
+            {/* Add the dynamically generated buttons */}
+            <group position-y={-.5}>
+              {clipButtons}
+            </group>
           </group>
-        ),
-        [controls]
-      );
+        );
+      }, [clips, controls, handlePlay, handlePause, handleRandomClip]);
 
       return (
         <>
