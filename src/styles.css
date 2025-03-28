@@ -70,4 +70,29 @@ main {
         inset 0px -1px 0px rgba(0, 0, 0, 0.15);
     }
   }
+  button.red {
+    background: #ff4d4d; /* Red background */
+    color: #fff; /* White text */
+    box-shadow: rgba(255, 77, 77, 0.4) 0 2px 8px 0,
+      inset 0px -6px 0px rgba(0, 0, 0, 0.1),
+      inset 0px -2px 0px rgba(0, 0, 0, 0.15);
+    transition: all 100ms ease-in-out;
+  }
+  
+  button.red:hover {
+    filter: brightness(0.95);
+    transform: translateY(1px);
+    box-shadow: rgba(255, 77, 77, 0.4) 0 2px 8px 0,
+      inset 0px -5px 0px rgba(0, 0, 0, 0.1),
+      inset 0px -2px 0px rgba(0, 0, 0, 0.15);
+  }
+  
+  button.red:active {
+    filter: brightness(0.9);
+    transform: translateY(3px);
+    padding-top: 15px;
+    padding-bottom: 15px;
+    box-shadow: rgba(255, 77, 77, 0.4) 0 2px 6px 0,
+      inset 0px -1px 0px rgba(0, 0, 0, 0.15);
+  }
 }

@@ -49,7 +49,7 @@ export const VideoScreen = memo(
       // Memoize video screen and subtitle components
       const Screen = useMemo(
         () => (
-          <mesh {...props}>
+          <mesh scale={0.25}>
             <planeGeometry args={[16, 9]} />
             <meshBasicMaterial map={videoTexture} toneMapped={false} />
           </mesh>
@@ -176,11 +176,11 @@ export const VideoScreen = memo(
       }, [clips, controls, handlePlay, handlePause, handleRandomClip]);
 
       return (
-        <>
+        <group {...props}>
           {Screen}
           {SubtitleDisplay}
           {Controls}
-        </>
+        </group>
       );
     }
   )
