@@ -73,7 +73,7 @@ export const VideoScreen = memo(
       // Memoized SubtitleDisplay component
       const SubtitleDisplay = useMemo(
         () => (
-          <Box name="Subtitles" args={[4, 0.5, 0.1]} position-y={-1.5}>
+          <Box name="Subtitles" args={[4, 0.5, 0.1]} position={[0,-1.5,0.75]}>
             <SubtitleText
               color="black"
               fontSize={0.1}
@@ -138,7 +138,7 @@ export const VideoScreen = memo(
         });
 
         return (
-          <group position={[0, -2, 0]}>
+          <group position={[0, -2, 0.75]}>
             {/* Static buttons */}
             <ControlButton position={[-1, 0, 0]} onClick={handlePlay}>
               Play
