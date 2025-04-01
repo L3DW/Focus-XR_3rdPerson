@@ -1,9 +1,10 @@
-import { useRef } from "react";
+import { Suspense, useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import { CameraControls, Grid } from "@react-three/drei";
 import { Perf } from "r3f-perf";
 import { XR, createXRStore } from "@react-three/xr";
 import { VideoScreen } from "./VideoScreen/VideoScreen";
+import { Room } from "./Scene/Room";
 
 const store = createXRStore();
 
@@ -43,7 +44,11 @@ export default function App() {
           <ambientLight intensity={1} />
           <CameraControls />
           <Grid args={[10, 10]} position-y={0} />
-          <VideoScreen position={[0, 3.5, -4.5]} ref={screenRef} />
+
+          <Suspense fallback={null}>
+            <VideoScreen position={[0.38, 7, -13.60]} ref={screenRef} scale={1.68} />
+            <Room Scale={0.15}/>
+          </Suspense>
         </XR>
       </Canvas>
     </main>
