@@ -1,4 +1,4 @@
-import { Suspense, useRef } from "react";
+import { Suspense, useRef, useCallback } from "react";
 import { Canvas } from "@react-three/fiber";
 import { CameraControls, Grid } from "@react-three/drei";
 import { Perf } from "r3f-perf";
@@ -12,24 +12,40 @@ export default function App() {
   const screenRef = useRef();
 
   // Helper function to log video info
-  const logVideoInfo = () => {
+  const handlePlay = useCallback(() => {
+    screenRef.current?.play();
+  }, []);
+
+  const handlePause = useCallback(() => {
+    screenRef.current?.pause();
+  }, []);
+
+  const handleRandomClip = useCallback(() => {
+    screenRef.current?.randomClip();
+  }, []);
+
+  const handleEnterXR = useCallback(() => {
+    store.enterAR();
+  }, []);
+
+  const logVideoInfo = useCallback(() => {
     if (screenRef.current) {
       console.log("Current Time:", screenRef.current.getCurrentTime());
       console.log("Duration:", screenRef.current.getDuration());
       console.log("Is Playing:", screenRef.current.isPlaying());
     }
-  };
+  }, []);
 
   return (
     <main>
       {/* HUD Controls */}
       <div id="HUD">
         {[
-          { label: "Play", onClick: () => screenRef.current?.play() },
-          { label: "Pause", onClick: () => screenRef.current?.pause() },
-          { label: "Random Clip", onClick: () => screenRef.current?.randomClip() },
+          { label: "Play", onClick: handlePlay },
+          { label: "Pause", onClick: handlePause },
+          { label: "Random Clip", onClick: handleRandomClip },
           { label: "Console Video Info", onClick: logVideoInfo },
-          { label: "Enter XR", onClick: () => store.enterAR(), className: "red" },
+          { label: "Enter XR", onClick: handleEnterXR, className: "red" },
         ].map(({ label, onClick, className }, index) => (
           <button key={index} onClick={onClick} className={className}>
             {label}

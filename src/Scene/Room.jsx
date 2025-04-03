@@ -1,7 +1,7 @@
-import React from "react";
+import React, { memo } from "react";
 import { Box, useGLTF } from "@react-three/drei";
+const Room = (props) => {
 
-export function Room(props) {
   const { nodes, materials } = useGLTF("/Room.glb");
   console.log(materials);
 
@@ -1802,5 +1802,6 @@ export function Room(props) {
     </group>
   );
 }
-
 useGLTF.preload("/Room.glb");
+
+export default memo(Room)
