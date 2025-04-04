@@ -6,6 +6,7 @@ import { XR, createXRStore } from "@react-three/xr";
 import VideoScreen from "./VideoScreen/VideoScreen";
 import Room from "./Scene/Room";
 import useGlobalState from "./State/globalState"; // Import global state
+import Leva_Directional from "./Scene/Leva_Directional";
 
 const XRStore = createXRStore();
 
@@ -88,8 +89,9 @@ export default function App() {
       {/* 3D Canvas */}
       <Canvas camera={{ position: [0, 2, 5], fov: 50, near: 0.1, far: 100 }}>
         <XR store={XRStore}>
-          <Perf />
+          <Perf position="bottom-right"/>
           <ambientLight intensity={1} />
+          <Leva_Directional/>
           <CameraControls />
           <Grid args={[10, 10]} position-y={0} />
           <Suspense fallback={null}>
