@@ -2,12 +2,30 @@ import { useState, useEffect } from "react";
 import { Text } from "@react-three/drei";
 import { timecodeToSeconds, cleanString } from "./utils";
 
+/**
+ * A custom hook for managing subtitles in a Three.js video scene.
+ * It fetches subtitles from a CSV file, synchronizes them with the video playback,
+ * and provides a `SubtitleText` component for rendering the current subtitle.
+ *
+ * @param {string} subtitlesUrl - The URL of the subtitles CSV file.
+ * @param {React.MutableRefObject<HTMLVideoElement|null>} videoElementRef - A ref to the video element.
+ *
+ * @returns {Object} An object containing subtitle-related data and utilities.
+ * @returns {React.FC} return.SubtitleText - A React component for rendering the current subtitle.
+ * @returns {Array<Object>} return.subtitles - The parsed subtitles array.
+ * @returns {string} return.currentSubtitle - The currently active subtitle text.
+ * @returns {boolean} return.isLoading - Whether the subtitles are still loading.
+ * @returns {string|null} return.error - An error message if loading subtitles failed.
+ */
 export const useSubtitles = (subtitlesUrl, videoElementRef) => {
-  const [subtitles, setSubtitles] = useState(null);
-  const [currentSubtitle, setCurrentSubtitle] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [subtitles, setSubtitles] = useState(null); // Parsed subtitles
+  const [currentSubtitle, setCurrentSubtitle] = useState(""); // Current subtitle text
+  const [isLoading, setIsLoading] = useState(true); // Loading state
+  const [error, setError] = useState(null); // Error state
 
+  /**
+   * Fetches and parses the subtitles CSV file.
+   */
   useEffect(() => {
     const loadSubtitles = async () => {
       try {
@@ -56,6 +74,9 @@ export const useSubtitles = (subtitlesUrl, videoElementRef) => {
     loadSubtitles();
   }, [subtitlesUrl]);
 
+  /**
+   * Synchronizes the current subtitle with the video's playback time.
+   */
   useEffect(() => {
     if (!videoElementRef?.current || !subtitles) return;
 
@@ -81,6 +102,12 @@ export const useSubtitles = (subtitlesUrl, videoElementRef) => {
     };
   }, [videoElementRef, subtitles]);
 
+  /**
+   * A React component for rendering the current subtitle.
+   *
+   * @param {Object} props - Props for the `Text` component from `@react-three/drei`.
+   * @returns {JSX.Element} The rendered subtitle text.
+   */
   const SubtitleText = (props) => <Text {...props}>{currentSubtitle}</Text>;
 
   return {

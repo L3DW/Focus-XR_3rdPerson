@@ -1,4 +1,8 @@
-/* General Reset */
+/* ============================
+   General Reset
+   ============================
+   Resets default browser styles and ensures consistent box-sizing.
+*/
 * {
   box-sizing: border-box;
 }
@@ -7,93 +11,116 @@ html,
 body,
 #root,
 #root > main {
+  /* Ensures the app takes up the full viewport */
   height: 100dvh;
   width: 100vw;
   margin: 0;
   padding: 0;
 }
 
+/* ============================
+   Main Layout
+   ============================
+   Centers content within the main container using CSS Grid.
+*/
 main {
   display: grid;
   place-items: center;
 
   > div {
+    /* Ensures child elements span the entire grid */
     grid-column: 1 / -1;
     grid-row: 1 / -1;
   }
 }
 
-/* HUD Styling */
+/* ============================
+   HUD Styling
+   ============================
+   Styles the Heads-Up Display (HUD) container.
+*/
 #HUD {
   display: flex; /* Use Flexbox for alignment */
-  flex-direction: row; /* Stack children vertically */
-  justify-content: flex-end; /* Align children to the bottom */
-  align-self: start;
+  flex-direction: row; /* Align buttons horizontally */
+  justify-content: flex-end; /* Align buttons to the right */
+  align-self: start; /* Align the HUD to the top of the container */
   padding: 1rem;
   height: 5rem;
-  z-index: 5;
-  background-color: rgb(243, 243, 243);
-  border-radius: 0 0 1rem 1rem; /* Rounded corners on top */
+  z-index: 5; /* Ensure the HUD appears above other elements */
+  background-color: rgb(243, 243, 243); /* Light gray background */
+  border-radius: 0 0 1rem 1rem; /* Rounded corners on the top */
   box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0,
     inset 0px -6px 0px rgba(0, 0, 0, 0.1),
-    inset 0px -2px 0px rgba(0, 0, 0, 0.15);
+    inset 0px -2px 0px rgba(0, 0, 0, 0.15); /* Subtle shadow effects */
 }
 
-/* Button Base Styles */
+/* ============================
+   Button Base Styles
+   ============================
+   Styles for all buttons within the HUD.
+*/
 #HUD button {
-  pointer-events: all;
-  margin: 0 0.5rem;
-  padding: 12px 26px 18px;
-  border: 0;
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 20px;
-  color: #071432;
-  background: #fff;
-  cursor: pointer;
-  z-index: 5;
-  transition: all 100ms ease-in-out;
+  pointer-events: all; /* Ensure buttons are clickable */
+  margin: 0 0.5rem; /* Add spacing between buttons */
+  padding: 12px 26px 18px; /* Adjust padding for a consistent look */
+  border: 0; /* Remove default border */
+  font-size: 16px; /* Set font size */
+  font-weight: bold; /* Make text bold */
+  border-radius: 20px; /* Rounded corners */
+  color: #071432; /* Dark text color */
+  background: #fff; /* White background */
+  cursor: pointer; /* Pointer cursor on hover */
+  z-index: 5; /* Ensure buttons appear above other elements */
+  transition: all 100ms ease-in-out; /* Smooth hover/active transitions */
   box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0,
     inset 0px -6px 0px rgba(0, 0, 0, 0.1),
-    inset 0px -2px 0px rgba(0, 0, 0, 0.15);
+    inset 0px -2px 0px rgba(0, 0, 0, 0.15); /* Subtle shadow effects */
 }
 
+/* Hover state for buttons */
 #HUD button:hover {
-  filter: brightness(0.98);
-  transform: translateY(1px);
-  margin-top: 2px;
+  filter: brightness(0.98); /* Slightly darken the button */
+  transform: translateY(1px); /* Add a slight downward movement */
+  margin-top: 2px; /* Adjust margin for visual effect */
   box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0,
     inset 0px -5px 0px rgba(0, 0, 0, 0.1),
-    inset 0px -2px 0px rgba(0, 0, 0, 0.15);
+    inset 0px -2px 0px rgba(0, 0, 0, 0.15); /* Adjust shadow */
 }
 
+/* Active state for buttons */
 #HUD button:active {
-  filter: brightness(0.97);
-  transform: translateY(3px);
-  padding-top: 15px;
+  filter: brightness(0.97); /* Darken the button further */
+  transform: translateY(3px); /* Move the button down */
+  padding-top: 15px; /* Adjust padding for pressed effect */
   padding-bottom: 15px;
-  margin-top: 0;
+  margin-top: 0; /* Reset margin */
   box-shadow: rgba(99, 99, 99, 0.2) 0 2px 6px 0,
-    inset 0px -1px 0px rgba(0, 0, 0, 0.15);
+    inset 0px -1px 0px rgba(0, 0, 0, 0.15); /* Adjust shadow */
 }
 
-/* Red Button Variant */
+/* ============================
+   Red Button Variant
+   ============================
+   Styles for buttons with the "red" class.
+*/
 #HUD button.red {
-  background: #ff4d4d;
-  color: #fff;
+  background: #ff4d4d; /* Red background */
+  color: #fff; /* White text */
   box-shadow: rgba(255, 77, 77, 0.4) 0 2px 8px 0,
     inset 0px -6px 0px rgba(0, 0, 0, 0.1),
-    inset 0px -2px 0px rgba(0, 0, 0, 0.15);
+    inset 0px -2px 0px rgba(0, 0, 0, 0.15); /* Subtle shadow effects */
 }
 
+/* Hover state for red buttons */
 #HUD button.red:hover {
-  filter: brightness(0.95);
-  transform: translateY(1px);
+  filter: brightness(0.95); /* Slightly darken the button */
+  transform: translateY(1px); /* Add a slight downward movement */
 }
 
+/* Active state for red buttons */
 #HUD button.red:active {
-  filter: brightness(0.9);
-  transform: translateY(3px);
-  padding-top: 15px;
+  filter: brightness(0.9); /* Darken the button further */
+  transform: translateY(3px); /* Move the button down */
+  padding-top: 15px; /* Adjust padding for pressed effect */
   padding-bottom: 15px;
 }

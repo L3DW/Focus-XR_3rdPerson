@@ -1,11 +1,25 @@
 import { useState, useEffect, useMemo } from "react";
 import { cleanString, timecodeToSeconds } from "./utils";
 
+/**
+ * A custom hook for loading and parsing video clips from a CSV file.
+ * The clips are stored as an object where each clip is identified by a unique name.
+ *
+ * @param {string} clipsUrl - The URL of the clips CSV file.
+ *
+ * @returns {Object} An object containing clip-related data and utilities.
+ * @returns {Object|null} return.clips - The parsed clips object, where each key is a clip name and the value is an object with `start` and `end` times.
+ * @returns {boolean} return.isLoading - Whether the clips are still loading.
+ * @returns {string|null} return.error - An error message if loading clips failed.
+ */
 export const useClips = (clipsUrl) => {
-  const [clips, setClips] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [clips, setClips] = useState(null); // Parsed clips
+  const [isLoading, setIsLoading] = useState(true); // Loading state
+  const [error, setError] = useState(null); // Error state
 
+  /**
+   * Fetches and parses the clips CSV file.
+   */
   useEffect(() => {
     const loadClips = async () => {
       try {
@@ -49,5 +63,8 @@ export const useClips = (clipsUrl) => {
     loadClips();
   }, [clipsUrl]);
 
+  /**
+   * Memoizes the returned values to avoid unnecessary re-computations.
+   */
   return useMemo(() => ({ clips, isLoading, error }), [clips, isLoading, error]);
 };
